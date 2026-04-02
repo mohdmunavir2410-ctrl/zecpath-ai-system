@@ -1,0 +1,17 @@
+2026-04-03 05:07:15,519 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-03 05:07:15,519 - ZecpathAI - INFO - --- Zecpath AI Hiring System Started ---
+2026-04-03 05:07:15,519 - ZecpathAI - INFO - System is ready for data processing.
+2026-04-03 05:07:15,519 - ZecpathAI - INFO - --- System Session Ended ---
+2026-04-03 05:12:17,098 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-03 05:12:17,897 - ZecpathAI - INFO - --- Zecpath AI Hiring System Started ---
+2026-04-03 05:12:17,897 - ZecpathAI - INFO - Starting extraction for: data/resume.pdf
+2026-04-03 05:12:17,939 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-03 05:12:17,942 - ZecpathAI - INFO - Resume text is ready for AI analysis.
+2026-04-03 05:12:17,942 - ZecpathAI - INFO - --- System Session Ended ---
+2026-04-03 05:17:01,322 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-03 05:17:01,670 - ZecpathAI - INFO - --- Zecpath AI Hiring System Started ---
+2026-04-03 05:17:01,670 - ZecpathAI - INFO - Starting extraction for: data/resume.pdf
+2026-04-03 05:17:01,712 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-03 05:17:01,712 - ZecpathAI - INFO - Starting keyword matching process.
+2026-04-03 05:17:01,712 - ZecpathAI - INFO - Matching complete. Found 4 keywords.
+2026-04-03 05:17:01,712 - ZecpathAI - INFO - --- System Session Ended ---

@@ -1,15 +1,23 @@
-def extract_skills(text):
-    skills = [
-        "python", "java", "c++", "sql",
-        "machine learning", "data analysis",
-        "excel", "communication", "teamwork"
-    ]
+from utils import logger
 
-    text = text.lower()
-    found_skills = []
+def match_keywords(text, keywords):
+    """Checks if specific keywords exist in the extracted text."""
+    if not text:
+        logger.error("No text provided for matching.")
+        return {}
 
-    for skill in skills:
-        if skill in text:
-            found_skills.append(skill)
-
-    return found_skills
+    logger.info("Starting keyword matching process.")
+    results = {}
+    
+    # Clean the text to make it easier to search
+    text_lower = text.lower()
+    
+    for word in keywords:
+        # Check if the word is in the resume
+        if word.lower() in text_lower:
+            results[word] = "Found"
+        else:
+            results[word] = "Missing"
+            
+    logger.info(f"Matching complete. Found {list(results.values()).count('Found')} keywords.")
+    return results

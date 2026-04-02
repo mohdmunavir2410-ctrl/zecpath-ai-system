@@ -1,10 +1,33 @@
-from PyPDF2 import PdfReader
+import fitz  # PyMuPDF
+import os
+from utils import logger
 
-def extract_text_from_pdf(file_path):
-    reader = PdfReader(file_path)
-    text = ""
+def extract_text_from_pdf(pdf_path):
+    """Extracts all text from a given PDF file."""
+    if not os.path.exists(pdf_path):
+        logger.error(f"File not found: {pdf_path}")
+        return None
 
-    for page in reader.pages:
-        text += page.extract_text() or ""
+    try:
+        logger.info(f"Starting extraction for: {pdf_path}")
+        doc = fitz.open(pdf_path)
+        text = ""
+        
+        for page in doc:
+            text += page.get_text()
+            
+        doc.close()
+        logger.info("Successfully extracted text from PDF.")
+        return text
+    
+    except Exception as e:
+        logger.error(f"Error during PDF extraction: {e}")
+        return None
 
-    return text
+if __name__ == "__main__":
+  
+    sample_pdf = "data/resume.pdf"
+    content = extract_text_from_pdf(sample_pdf)
+    if content:
+        print("--- Extracted Content Preview ---")
+        print(content[:500]) 
