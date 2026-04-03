@@ -13,7 +13,7 @@ def start_zecpath_system():
     resume_text = extract_text_from_pdf(resume_path)
     
     if resume_text:
-        # 2. Match Keywords
+    # 2. Match keywords
         match_results = match_keywords(resume_text, job_requirements)
         
         print("\n--- ATS Match Results ---")
