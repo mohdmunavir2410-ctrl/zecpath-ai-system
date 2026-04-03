@@ -27,5 +27,7 @@
     "technical_skills": ["string"],
     "soft_skills": ["string"]
   },
-  "certifications": ["string"]
+  "certifications": ["string"],
+  "total_experience_years": "number",
+  "notice_period_days": "integer"
 }
