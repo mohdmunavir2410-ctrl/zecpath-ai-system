@@ -1,0 +1,33 @@
+Mohammed Munavir
+Data Scientist
+mohdmunavir2410@gmail.com 7356506774 Malappuram
+PROFILE
+Dynamic Data Science professional skilled in transforming raw data into actionable insights that drive smarter
+business decisions. Proficient in machine learning, predictive analytics, and statistical modeling with a strong
+foundation in Python, SQL, and visualization tools. Proven ability to solve complex problems and deliver
+measurable impact through data-driven strategies.
+PROFESSIONAL EXPERIENCE
+DATA SCIENCE (intern), Techolas Technologies,Calicut
+07/2025 – Present
+•Data cleaning and preprocessing using Python (Pandas, NumPy) & SQL Calicut,India
+•Built machine learning models with scikit-learn, TensorFlow, Keras
+•Applied statistical analysis, hypothesis testing, A/B testing
+•Created dashboards/visualizations in Tableau, Power BI, Matplotlib, Seaborn
+•Automated ETL workflows and data pipelines using Python
+•Performed feature engineering, model tuning, cross-validation
+•Collaborated with teams to deliver data-driven solutions
+EDUCATION
+BSC. MATHEMATICS 2022-2025
+University of Calicut Malappuram,India
+PROJECT
+MEDICAL COST PREDICTION IN ML
+SKILLS
+Technical skills
+Programming languages : Python, SQL
+Python Libraries ; NumPy, Pandas
+Machine learning
+Powerbi,Tableau
+Soft skills
+•Communication
+•Problem solving
+•Time management
