@@ -1,39 +1,75 @@
 import re
 import json
+import os
+
+
 
 def extract_skills(text):
-    skills = ["python", "java", "sql", "excel", "machine learning","power bi"]
+    skills = [
+        "python",
+        "java",
+        "sql",
+        "excel",
+        "machine learning",
+        "power bi",
+        "ml"
+    ]
+
     found = []
+    text = text.lower()
 
     for skill in skills:
-        if skill in text.lower():
-            found.append(skill)
+        if skill in text:
+            if skill == "ml":
+                found.append("machine learning")
+            else:
+                found.append(skill)
 
-    return found
+    return list(set(found))
+
 
 
 def extract_experience(text):
-    match = re.search(r'(\d+)\+?\s*years', text.lower())
-    return match.group() if match else None
+    text = text.lower()
+
+    # Match range: 2-5 years OR 2 to 5 years
+    range_match = re.search(r'(\d+)\s*(?:-|to)\s*(\d+)\s*years', text)
+    if range_match:
+        return f"{range_match.group(1)}-{range_match.group(2)} years"
+
+    # Match single: 3+ years OR 3 years
+    single_match = re.search(r'(\d+)\+?\s*years', text)
+    if single_match:
+        return single_match.group()
+
+    return "Not Found"
+
 
 
 def extract_role(text):
     text = text.lower()
 
-    if "analyst" in text:
-        return "Data Analyst"
-    elif "engineer" in text:
-        return "Software Engineer"
-    elif "ml engineer" in text:
+    if "ml engineer" in text:
         return "ML Engineer"
+    elif "data analyst" in text or "analyst" in text:
+        return "Data Analyst"
+    elif "software engineer" in text or "engineer" in text:
+        return "Software Engineer"
 
     return "Not Found"
 
 
+
 def extract_education(text):
-    if "bachelor" in text.lower() or "b.tech" in text.lower():
+    text = text.lower()
+
+    if "master" in text or "m.tech" in text:
+        return "Master's Degree"
+    elif "bachelor" in text or "b.tech" in text:
         return "Bachelor's Degree"
-    return None
+
+    return "Not Found"
+
 
 
 def parse_jd(text):
@@ -47,11 +83,40 @@ def parse_jd(text):
 
 
 if __name__ == "__main__":
-    with open("sample_jd.txt", "r") as file:
+
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    input_path = os.path.join(BASE_DIR, "sample_jd.txt")
+    output_path = os.path.join(BASE_DIR, "jd_output_samples.txt")
+
+    # Read JD
+    with open(input_path, "r") as file:
         jd_text = file.read()
 
+    # Parse JD
     result = parse_jd(jd_text)
 
     print("\nParsed Job Description:\n")
-    print(result)
-    print(json.dumps(result,indent=2))
+    print(json.dumps(result, indent=2))
+
+ 
+
+    if os.path.exists(output_path):
+        with open(output_path, "r") as file:
+            try:
+                existing_data = json.load(file)
+
+                # If file contains single dict, convert to list
+                if isinstance(existing_data, dict):
+                    existing_data = [existing_data]
+
+            except:
+                existing_data = []
+    else:
+        existing_data = []
+
+    existing_data.append(result)
+
+    with open(output_path, "w") as file:
+        json.dump(existing_data, file, indent=2)
+
+    print("\nJD appended successfully ✅")
