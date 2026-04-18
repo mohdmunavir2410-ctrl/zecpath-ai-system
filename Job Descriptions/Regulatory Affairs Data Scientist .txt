@@ -1,0 +1,25 @@
+Job Summary 
+
+Applies data science and analytics to optimize regulatory submissions, compliance tracking, 
+and decision-making across global markets, aligning with agencies like FDA, EMA, and 
+CDSCO. 
+
+Key Responsibilities 
+
+• Analyze regulatory data (submissions, approvals, timelines)  
+• Build predictive models for approval success and timelines  
+• Develop dashboards for regulatory performance metrics  
+• Integrate real-world and clinical data into regulatory insights  
+• Collaborate with regulatory, clinical, and data teams  
+• Support AI-driven regulatory decision-making  
+
+Qualifications 
+
+• MSc / PhD in Data Science / Bioinformatics / Life Sciences  
+• 3–8 years experience  
+
+Skills 
+
+• Python/R, SQL  
+• Machine learning & statistics  
+• Regulatory knowledge + data analytics  

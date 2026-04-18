@@ -1,0 +1,23 @@
+Job Summary 
+
+Automates the collection, analysis, and dissemination of global regulatory intelligence. 
+
+Key Responsibilities 
+
+• Develop tools to track regulatory updates globally  
+• Automate regulatory intelligence workflows  
+• Use NLP to extract insights from regulatory documents  
+• Provide real-time regulatory updates to teams  
+• Maintain regulatory intelligence databases  
+• Support strategic decision-making  
+
+Qualifications 
+
+• Degree in Life Sciences / Data Science / IT  
+• 3–8 years experience  
+
+Skills 
+
+• Automation & AI tools  
+• Research and analytics  
+• Regulatory intelligence  

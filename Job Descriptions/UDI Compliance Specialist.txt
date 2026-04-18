@@ -1,0 +1,26 @@
+(Unique Device Identification) 
+Job Summary 
+
+Ensures compliance with Unique Device Identification (UDI) regulations, enabling 
+traceability and safety of medical devices in global markets. 
+
+Key Responsibilities 
+
+• Implement and manage UDI systems for device identification  
+• Ensure compliance with UDI regulations (FDA UDI, EU MDR UDI)  
+• Assign and maintain UDI codes (DI & PI – Device Identifier & Production Identifier)  
+• Submit UDI data to global databases (e.g., GUDID, EUDAMED)  
+• Coordinate labeling updates with UDI requirements  
+• Monitor changes in UDI regulations and ensure compliance  
+• Support audits and regulatory inspections  
+
+Qualifications 
+
+• Degree in Engineering / Life Sciences / Pharmacy  
+• 3–7 years experience in regulatory or labeling roles  
+
+Skills 
+
+• UDI systems & database management  
+• Knowledge of global UDI regulations  
+• Data accuracy & compliance tracking  

@@ -1,0 +1,24 @@
+Job Summary 
+
+Leverages Artificial Intelligence to automate regulatory processes, improve submission 
+quality, and enhance compliance. 
+
+Key Responsibilities 
+
+• Develop AI tools for document review and submission automation  
+• Implement NLP models for regulatory intelligence extraction  
+• Automate regulatory workflows and compliance checks  
+• Collaborate with IT and regulatory teams  
+• Ensure AI solutions comply with regulatory standards  
+• Monitor AI system performance and accuracy  
+
+Qualifications 
+
+• MSc / PhD in AI / Data Science / Life Sciences  
+• 3–8 years experience  
+
+Skills 
+
+• AI/ML, NLP  
+• Regulatory domain knowledge  
+• Automation tools  

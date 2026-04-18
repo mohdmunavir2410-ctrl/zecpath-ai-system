@@ -1,0 +1,23 @@
+Job Summary 
+
+Focuses on automation of regulatory submissions using advanced digital tools and platforms. 
+
+Key Responsibilities 
+
+• Automate eCTD submission workflows  
+• Implement digital publishing systems  
+• Integrate regulatory systems (RIM, DMS, eCTD tools)  
+• Ensure compliance with electronic submission standards  
+• Optimize submission timelines through automation  
+• Troubleshoot system and submission issues  
+
+Qualifications 
+
+• Degree in Pharmacy / Life Sciences / IT  
+• 3–8 years experience  
+
+Skills 
+
+• eCTD tools (Veeva, Lorenz)  
+• Automation & scripting (Python)  
+• System integration  
