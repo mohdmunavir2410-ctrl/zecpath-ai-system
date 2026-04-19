@@ -1,0 +1,7 @@
+SECTION DETECTION REPORT
+
+resume.json → 4/4 = 1.00
+resume2.json → 4/4 = 1.00
+resume3.json → 4/4 = 1.00
+
+Average Accuracy: 1.00

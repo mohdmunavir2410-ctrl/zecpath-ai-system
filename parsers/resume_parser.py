@@ -1,33 +1,54 @@
-import fitz  # PyMuPDF
-import os
-from utils import logger
+"""
+resume_parser.py
 
-def extract_text_from_pdf(pdf_path):
-    """Extracts all text from a given PDF file."""
-    if not os.path.exists(pdf_path):
-        logger.error(f"File not found: {pdf_path}")
-        return None
+Converts raw resume text into structured data
+for ATS scoring and AI screening.
+"""
 
-    try:
-        logger.info(f"Starting extraction for: {pdf_path}")
-        doc = fitz.open(pdf_path)
-        text = ""
-        
-        for page in doc:
-            text += page.get_text()
-            
-        doc.close()
-        logger.info("Successfully extracted text from PDF.")
-        return text
-    
-    except Exception as e:
-        logger.error(f"Error during PDF extraction: {e}")
-        return None
+from section_parser.section_classifier import classify_sections
 
-if __name__ == "__main__":
-  
-    sample_pdf = "data/resume.pdf"
-    content = extract_text_from_pdf(sample_pdf)
-    if content:
-        print("--- Extracted Content Preview ---")
-        print(content[:500]) 
+
+# --------------------------------
+# MASTER SKILL DATABASE
+# --------------------------------
+SKILLS_DB = [
+    "python",
+    "machine learning",
+    "sql",
+    "communication",
+    "teamwork",
+    "data analysis",
+]
+
+
+# --------------------------------
+# Detect Skills (Industry ATS Logic)
+# --------------------------------
+def detect_skills(text):
+    text = text.lower()
+
+    detected = []
+
+    for skill in SKILLS_DB:
+        if skill in text:
+            detected.append(skill)
+
+    return detected
+
+
+# --------------------------------
+# Build Structured Resume
+# --------------------------------
+def build_structured_resume(text):
+
+    sections = classify_sections(text)
+
+    structured_resume = {
+        "skills": detect_skills(text),  # FULL resume scan
+        "education": sections.get("education", ""),
+        "experience": sections.get("experience", ""),
+        "projects": sections.get("projects", ""),
+        "certifications": sections.get("certifications", ""),
+    }
+
+    return structured_resume
