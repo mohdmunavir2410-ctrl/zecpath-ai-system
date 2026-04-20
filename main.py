@@ -8,6 +8,10 @@ from screening_ai.resume_screening import screen_candidate
 from parsers.resume_parser import build_structured_resume
 from section_parser.section_classifier import classify_sections
 
+# ✅ DAY 9 IMPORTS
+from skill_engine.skill_extractor import SkillExtractor
+from skill_engine.confidence import calculate_confidence
+
 
 # -----------------------------
 # Detect file type & extract text
@@ -55,7 +59,7 @@ def save_sections(sections):
 
 
 # -----------------------------
-# ✅ NEW — Save Structured Resume
+# Save Structured Resume
 # -----------------------------
 def save_structured_resume(data):
 
@@ -70,13 +74,28 @@ def save_structured_resume(data):
 
 
 # -----------------------------
-# ✅ NEW — Save Screening Result
+# Save Screening Result
 # -----------------------------
 def save_screening_result(data):
 
     os.makedirs("reports", exist_ok=True)
 
     path = "reports/screening_result.json"
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
+
+    return path
+
+
+# -----------------------------
+# ✅ Save Intelligent Skills
+# -----------------------------
+def save_skills(data):
+
+    os.makedirs("output/results", exist_ok=True)
+
+    path = "output/results/skills_intelligence.json"
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
@@ -96,7 +115,7 @@ def save_log(message):
 
 
 # -----------------------------
-# Simple Skill Extractor
+# OLD Skill Extractor (ATS)
 # -----------------------------
 def extract_skills(text):
 
@@ -129,12 +148,8 @@ def main():
     try:
         print("Extracting resume...")
 
-        # -----------------------------
         # Resume Extraction
-        # -----------------------------
         extracted_text = extract_resume(file_path)
-
-        # Save raw output
         output_file = save_output(extracted_text)
 
         # -----------------------------
@@ -145,17 +160,14 @@ def main():
 
         print("📑 Sections detected:", list(sections.keys()))
 
-        # -----------------------------
-        # ✅ NEW — Structured Resume
-        # -----------------------------
+        # Structured Resume
         structured_data = build_structured_resume(extracted_text)
-
         structured_path = save_structured_resume(structured_data)
 
         print("📊 Structured Resume Created")
 
         # -----------------------------
-        # Skill Extraction
+        # OLD ATS Skill Extraction
         # -----------------------------
         found_skills = extract_skills(extracted_text)
 
@@ -166,9 +178,6 @@ def main():
             "communication": 20
         }
 
-        # -----------------------------
-        # ATS Score Calculation
-        # -----------------------------
         score, total = score_candidate(
             found_skills,
             required_skills
@@ -182,7 +191,7 @@ def main():
         save_log(f"Extraction successful | ATS Score: {score}/{total}")
 
         # -----------------------------
-        # ✅ NEW — AI Resume Screening
+        # AI Resume Screening
         # -----------------------------
         screening_result = screen_candidate(
             structured_data,
@@ -194,6 +203,27 @@ def main():
         print("\n🤖 AI Screening Result")
         print(screening_result)
         print(f"📊 Screening report saved: {report_path}")
+
+        # =====================================================
+        # ✅ DAY 9 — SKILL INTELLIGENCE ENGINE
+        # =====================================================
+
+        extractor = SkillExtractor()
+
+        intelligent_skills = extractor.extract_skills(
+            extracted_text
+        )
+
+        confidence_scores = calculate_confidence(
+            sections,
+            intelligent_skills
+        )
+
+        skills_path = save_skills(confidence_scores)
+
+        print("\n🧠 Intelligent Skill Analysis")
+        print(confidence_scores)
+        print(f"📁 Skill intelligence saved: {skills_path}")
 
     except Exception as e:
         save_log(f"Error: {str(e)}")

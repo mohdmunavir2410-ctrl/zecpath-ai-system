@@ -52,3 +52,33 @@ def build_structured_resume(text):
     }
 
     return structured_resume
+
+# -------- SKILL EXTRACTION  -------- #
+
+skills_list = ["python", "sql", "communication", "java"]
+
+def extract_skills(text):
+    text = text.lower()
+    found_skills = []
+    
+    for skill in skills_list:
+        if skill in text:
+            found_skills.append(skill)
+            
+    return found_skills
+
+def confidence(text, skill):
+    count = text.count(skill)
+    return 0.9 if count > 1 else 0.7
+
+def build_skill_output(text):
+    skills = extract_skills(text)
+    
+    result = []
+    for skill in skills:
+        result.append({
+            "name": skill,
+            "confidence": confidence(text, skill)
+        })
+        
+    return result
