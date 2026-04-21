@@ -1,18 +1,31 @@
-# confidence.py
+def calculate_confidence(sections, skills):
 
-def calculate_confidence(text, skill):
-    """
-    Calculate confidence score based on how many times
-    the skill appears in the resume text.
-    """
+    confidence = {}
 
-    count = text.count(skill)
+    # Ensure sections is dictionary
+    if not isinstance(sections, dict):
+        return {}
 
-    if count >= 3:
-        return 0.95
-    elif count == 2:
-        return 0.85
-    elif count == 1:
-        return 0.75
-    else:
-        return 0.0
+    # Normalize skills input
+    if isinstance(skills, str):
+        skills = [skills]
+
+    if isinstance(skills, dict):
+        skills = list(skills.keys())
+
+    if not isinstance(skills, list):
+        return {}
+
+    # Merge section text
+    full_text = " ".join(str(v) for v in sections.values()).lower()
+
+    for skill in skills:
+
+        mentions = full_text.count(skill.lower())
+
+        confidence[skill] = {
+            "mentions": mentions,
+            "confidence": min(mentions * 20, 100)
+        }
+
+    return confidence

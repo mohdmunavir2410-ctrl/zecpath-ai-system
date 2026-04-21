@@ -1,6 +1,18 @@
 {
-    "machine learning": 0,
-    "communication": 0,
-    "python": 0,
-    "sql": 0
+    "technical": {
+        "mentions": 0,
+        "confidence": 0
+    },
+    "business": {
+        "mentions": 1,
+        "confidence": 20
+    },
+    "creative": {
+        "mentions": 0,
+        "confidence": 0
+    },
+    "soft_skills": {
+        "mentions": 0,
+        "confidence": 0
+    }
 }

@@ -66,3 +66,73 @@
 2026-04-21 08:51:04,914 - ZecpathAI - INFO - Successfully extracted text from PDF.
 2026-04-21 08:54:16,924 - ZecpathAI - INFO - Logging System Initialized.
 2026-04-21 08:54:16,925 - ZecpathAI - ERROR - File not found: data/resume.pdf
+2026-04-21 23:36:56,251 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:37:07,124 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-21 23:37:07,257 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 23:39:01,495 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:39:12,893 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-21 23:39:12,904 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 23:42:59,744 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:43:09,646 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-21 23:43:09,657 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 23:45:47,238 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:45:57,225 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-21 23:45:57,290 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 23:49:54,032 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:50:56,596 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:51:23,121 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:54:13,492 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:54:30,345 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-21 23:54:30,457 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 23:59:46,794 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 23:59:56,118 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-21 23:59:56,130 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:06:27,477 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:07:24,277 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:07:36,384 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:07:36,485 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:13:09,814 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:13:22,234 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:13:22,246 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:15:00,486 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:15:18,407 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:15:18,418 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:18:03,128 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:18:14,671 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:18:14,728 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:23:17,951 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:23:27,648 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:23:27,677 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:26:18,884 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:26:31,466 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:26:31,484 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:28:54,227 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:29:02,682 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:29:02,747 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:31:07,079 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:31:14,601 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:31:14,667 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:34:14,423 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:34:25,895 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:34:25,978 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:37:03,047 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:37:11,497 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:37:11,552 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:39:20,122 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:39:30,072 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:39:30,132 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:42:27,226 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:42:35,330 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:42:35,363 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:43:40,021 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:43:47,140 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:43:47,162 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:47:41,817 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:47:49,025 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:47:49,083 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:52:16,561 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:52:39,061 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:52:39,119 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-22 00:59:22,019 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-22 00:59:32,325 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-22 00:59:32,380 - ZecpathAI - INFO - Successfully extracted text from PDF.

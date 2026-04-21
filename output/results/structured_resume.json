@@ -1,12 +1,20 @@
 {
     "skills": [
         "python",
-        "machine learning",
         "sql",
-        "communication"
+        "numpy",
+        "pandas",
+        "machine learning",
+        "tensorflow",
+        "keras",
+        "power bi",
+        "tableau",
+        "communication",
+        "problem solving",
+        "time management"
     ],
-    "education": "EDUCATION\nMEDICAL COST PREDICTION IN ML\nPROJECT\n2022-2025\nMalappuram,India\n\n",
-    "experience": "PROFESSIONAL EXPERIENCE\n07/2025 \u2013 Present\nCalicut,India\n",
+    "education": "MEDICAL COST PREDICTION IN ML\nPROJECT\n2022-2025\nMalappuram,India\n",
+    "experience": "07/2025 \u2013 Present\nCalicut,India",
     "projects": "",
     "certifications": ""
 }

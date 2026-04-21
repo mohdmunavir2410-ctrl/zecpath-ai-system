@@ -1,84 +1,212 @@
 """
 resume_parser.py
 
-Converts raw resume text into structured data
-for ATS scoring and AI screening.
+Zecpath AI Resume Intelligence System
+Clean + Stable Version
 """
 
+import re
 from section_parser.section_classifier import classify_sections
 
 
-# --------------------------------
-# MASTER SKILL DATABASE
-# --------------------------------
-SKILLS_DB = [
-    "python",
-    "machine learning",
-    "sql",
-    "communication",
-    "teamwork",
-    "data analysis",
-]
+# =====================================================
+# CLEAN TEXT
+# =====================================================
+def clean_text(text):
+    text = re.sub(r"\r", "", text)
+    text = re.sub(r"\n+", "\n", text)
+    return text
 
 
-# --------------------------------
-# Detect Skills (Industry ATS Logic)
-# --------------------------------
-def detect_skills(text):
-    text = text.lower()
+# =====================================================
+# EDUCATION PARSER
+# =====================================================
+def extract_education(text):
 
-    detected = []
+    education = []
+    lines = text.split("\n")
 
-    for skill in SKILLS_DB:
-        if skill in text:
-            detected.append(skill)
+    degree_keywords = [
+        "bsc", "msc", "bachelor", "master",
+        "b.tech", "m.tech", "mba"
+    ]
 
-    return detected
+    for i, line in enumerate(lines):
+
+        if any(k in line.lower() for k in degree_keywords):
+
+            degree = line.strip()
+            university = ""
+            year = ""
+
+            # ---------- university ----------
+            for j in range(i + 1, min(i + 4, len(lines))):
+                if lines[j].strip():
+                    university = lines[j].strip()
+                    break
+
+            # ---------- graduation year ----------
+            for j in range(i, min(i + 6, len(lines))):
+                year_match = re.search(
+                    r"(20\d{2}\s*[-–]\s*20\d{2})",
+                    lines[j]
+                )
+                if year_match:
+                    year = year_match.group()
+                    break
+
+            education.append({
+                "degree": degree,
+                "institution": university,
+                "graduation_year": year
+            })
+
+    return education
 
 
-# --------------------------------
-# Build Structured Resume
-# --------------------------------
+# =====================================================
+# EXPERIENCE PARSER
+# =====================================================
+def extract_experience(text):
+
+    experience = []
+    lines = text.split("\n")
+
+    for i, line in enumerate(lines):
+
+        if "intern" in line.lower() or "experience" in line.lower():
+
+            role = line.strip()
+            duration = ""
+
+            if i + 1 < len(lines):
+
+                date_match = re.search(
+                    r"(\d{2}/\d{4}\s*[-–]\s*(Present|\d{2}/\d{4}))",
+                    lines[i + 1],
+                    re.IGNORECASE
+                )
+
+                if date_match:
+                    duration = date_match.group()
+
+            experience.append({
+                "role": role,
+                "duration": duration
+            })
+
+    return experience
+
+
+# =====================================================
+# CERTIFICATION PARSER
+# =====================================================
+def extract_certifications(text):
+
+    certifications = []
+
+    keywords = [
+        "machine learning",
+        "deep learning",
+        "data science",
+        "python certification",
+        "course",
+        "training",
+        "certificate"
+    ]
+
+    for line in text.split("\n"):
+
+        clean_line = line.strip()
+
+        # ignore empty
+        if not clean_line:
+            continue
+
+        # ignore long paragraph lines
+        if len(clean_line.split()) > 12:
+            continue
+
+        # ignore bullets
+        if clean_line.startswith("•"):
+            continue
+
+        for key in keywords:
+            if key in clean_line.lower():
+                certifications.append(clean_line)
+                break
+
+    return list(set(certifications))
+
+
+# =====================================================
+# SKILLS PARSER
+# =====================================================
+def extract_skills(text):
+
+    skills = {
+        "technical": [],
+        "soft": []
+    }
+
+    tech_skills = [
+        "python", "sql", "numpy", "pandas",
+        "machine learning", "tensorflow",
+        "keras", "power bi", "tableau"
+    ]
+
+    soft_skills = [
+        "communication",
+        "problem solving",
+        "time management",
+        "teamwork"
+    ]
+
+    lower_text = text.lower()
+
+    for skill in tech_skills:
+        if skill in lower_text:
+            skills["technical"].append(skill)
+
+    for skill in soft_skills:
+        if skill in lower_text:
+            skills["soft"].append(skill)
+
+    return skills
+
+
+# =====================================================
+# EXPERIENCE CALCULATOR
+# =====================================================
+def calculate_experience(exp):
+
+    if not exp:
+        return 0
+
+    # Internship counted as 1 year (simple logic)
+    return 1
+
+
+# =====================================================
+# BUILD STRUCTURED RESUME (CORE ENGINE)
+# =====================================================
 def build_structured_resume(text):
+
+    text = clean_text(text)
 
     sections = classify_sections(text)
 
+    skills_data = extract_skills(text)
+
+    # Convert dict → flat list for ATS + Screening
+    skills = skills_data["technical"] + skills_data["soft"]
+
     structured_resume = {
-        "skills": detect_skills(text),  # FULL resume scan
+        "skills": skills,
         "education": sections.get("education", ""),
         "experience": sections.get("experience", ""),
         "projects": sections.get("projects", ""),
-        "certifications": sections.get("certifications", ""),
+        "certifications": sections.get("certifications", "")
     }
 
     return structured_resume
-
-# -------- SKILL EXTRACTION  -------- #
-
-skills_list = ["python", "sql", "communication", "java"]
-
-def extract_skills(text):
-    text = text.lower()
-    found_skills = []
-    
-    for skill in skills_list:
-        if skill in text:
-            found_skills.append(skill)
-            
-    return found_skills
-
-def confidence(text, skill):
-    count = text.count(skill)
-    return 0.9 if count > 1 else 0.7
-
-def build_skill_output(text):
-    skills = extract_skills(text)
-    
-    result = []
-    for skill in skills:
-        result.append({
-            "name": skill,
-            "confidence": confidence(text, skill)
-        })
-        
-    return result
