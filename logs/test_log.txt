@@ -18,3 +18,8 @@ Extraction successful | ATS Score: 100/100
 Extraction successful | ATS Score: 100/100
 Extraction successful | ATS Score: 100/100
 Error: 'dict' object has no attribute 'count'
+Error: write() argument must be str, not None
+Extraction successful | ATS Score: 100/100
+Error: 'dict' object has no attribute 'count'
+Extraction successful | ATS Score: 100/100
+Error: 'dict' object has no attribute 'count'

@@ -55,3 +55,14 @@
 2026-04-21 00:30:37,476 - ZecpathAI - INFO - Logging System Initialized.
 2026-04-21 00:30:47,736 - ZecpathAI - INFO - Starting extraction for: data/resume.pdf
 2026-04-21 00:30:47,829 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 08:26:22,815 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 08:28:25,109 - ZecpathAI - ERROR - File not found: data/fesume2.pdf
+2026-04-21 08:28:37,688 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 08:28:44,314 - ZecpathAI - INFO - Starting extraction for: data/resume2.pdf
+2026-04-21 08:28:44,432 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 08:50:26,122 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 08:50:52,913 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 08:51:04,859 - ZecpathAI - INFO - Starting extraction for: data/resumes/resume.pdf
+2026-04-21 08:51:04,914 - ZecpathAI - INFO - Successfully extracted text from PDF.
+2026-04-21 08:54:16,924 - ZecpathAI - INFO - Logging System Initialized.
+2026-04-21 08:54:16,925 - ZecpathAI - ERROR - File not found: data/resume.pdf

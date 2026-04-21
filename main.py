@@ -11,7 +11,7 @@ from section_parser.section_classifier import classify_sections
 # ✅ DAY 9 IMPORTS
 from skill_engine.skill_extractor import SkillExtractor
 from skill_engine.confidence import calculate_confidence
-
+from parsers.pdf_parser import extract_text_from_pdf
 
 # -----------------------------
 # Detect file type & extract text
