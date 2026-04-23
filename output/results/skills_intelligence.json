@@ -1,18 +1,1 @@
-{
-    "technical": {
-        "mentions": 0,
-        "confidence": 0
-    },
-    "business": {
-        "mentions": 1,
-        "confidence": 20
-    },
-    "creative": {
-        "mentions": 0,
-        "confidence": 0
-    },
-    "soft_skills": {
-        "mentions": 0,
-        "confidence": 0
-    }
-}
+{}

@@ -61,7 +61,14 @@ def extract_experience(text):
 # -----------------------------------
 # TOTAL EXPERIENCE FUNCTION
 # -----------------------------------
-def total_experience(experience_list):
+def total_experience(exp):
 
-    total = sum(exp["years"] for exp in experience_list)
-    return round(total, 2)
+    years = 0
+
+    for e in exp:
+        if "Present" in e["duration"]:
+            years += 1
+        elif "-" in e["duration"]:
+            years += 1
+
+    return years

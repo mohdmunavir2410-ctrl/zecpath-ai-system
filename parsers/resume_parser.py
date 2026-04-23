@@ -2,11 +2,11 @@
 resume_parser.py
 
 Zecpath AI Resume Intelligence System
-Clean + Stable Version
+FINAL STABLE VERSION
 """
 
 import re
-from section_parser.section_classifier import classify_sections
+from utils.academic_profile_builder import build_academic_profile
 
 
 # =====================================================
@@ -27,33 +27,36 @@ def extract_education(text):
     lines = text.split("\n")
 
     degree_keywords = [
-        "bsc", "msc", "bachelor", "master",
-        "b.tech", "m.tech", "mba"
+        "bsc", "msc", "b.tech", "m.tech",
+        "bachelor", "master", "phd"
     ]
 
     for i, line in enumerate(lines):
 
-        if any(k in line.lower() for k in degree_keywords):
+        if any(d in line.lower() for d in degree_keywords):
 
             degree = line.strip()
             university = ""
             year = ""
 
-            # ---------- university ----------
-            for j in range(i + 1, min(i + 4, len(lines))):
-                if lines[j].strip():
-                    university = lines[j].strip()
-                    break
+            # Look next lines
+            for j in range(i + 1, min(i + 6, len(lines))):
 
-            # ---------- graduation year ----------
-            for j in range(i, min(i + 6, len(lines))):
+                next_line = lines[j].lower()
+
+                # Institution detection
+                if any(word in next_line for word in
+                       ["university", "college", "institute"]):
+                    university = lines[j].strip()
+
+                # Year detection
                 year_match = re.search(
-                    r"(20\d{2}\s*[-–]\s*20\d{2})",
+                    r"(20\d{2}\s*[-–]\s*20\d{2}|20\d{2})",
                     lines[j]
                 )
+
                 if year_match:
                     year = year_match.group()
-                    break
 
             education.append({
                 "degree": degree,
@@ -72,23 +75,30 @@ def extract_experience(text):
     experience = []
     lines = text.split("\n")
 
+    keywords = [
+        "intern", "internship", "experience",
+        "worked", "developer", "engineer",
+        "trainee", "role"
+    ]
+
     for i, line in enumerate(lines):
 
-        if "intern" in line.lower() or "experience" in line.lower():
+        if any(k in line.lower() for k in keywords):
 
             role = line.strip()
             duration = ""
 
-            if i + 1 < len(lines):
+            for j in range(i, min(i + 3, len(lines))):
 
                 date_match = re.search(
-                    r"(\d{2}/\d{4}\s*[-–]\s*(Present|\d{2}/\d{4}))",
-                    lines[i + 1],
+                    r"(20\d{2}\s*[-–]\s*(Present|20\d{2})|\d{2}/\d{4}\s*[-–]\s*(Present|\d{2}/\d{4}))",
+                    lines[j],
                     re.IGNORECASE
                 )
 
                 if date_match:
                     duration = date_match.group()
+                    break
 
             experience.append({
                 "role": role,
@@ -109,30 +119,39 @@ def extract_certifications(text):
         "machine learning",
         "deep learning",
         "data science",
-        "python certification",
+        "python",
         "course",
         "training",
-        "certificate"
+        "certificate",
+        "certification"
     ]
 
     for line in text.split("\n"):
 
         clean_line = line.strip()
 
-        # ignore empty
         if not clean_line:
             continue
 
-        # ignore long paragraph lines
-        if len(clean_line.split()) > 12:
+        if "intern" in clean_line.lower():
             continue
 
-        # ignore bullets
+        if len(clean_line.split()) > 15:
+            continue
+
         if clean_line.startswith("•"):
             continue
 
         for key in keywords:
             if key in clean_line.lower():
+
+                clean_line = re.sub(
+                    r"\(.*intern.*\)",
+                    "",
+                    clean_line,
+                    flags=re.IGNORECASE
+                ).strip()
+
                 certifications.append(clean_line)
                 break
 
@@ -144,10 +163,7 @@ def extract_certifications(text):
 # =====================================================
 def extract_skills(text):
 
-    skills = {
-        "technical": [],
-        "soft": []
-    }
+    skills = {"technical": [], "soft": []}
 
     tech_skills = [
         "python", "sql", "numpy", "pandas",
@@ -179,34 +195,69 @@ def extract_skills(text):
 # EXPERIENCE CALCULATOR
 # =====================================================
 def calculate_experience(exp):
-
     if not exp:
         return 0
-
-    # Internship counted as 1 year (simple logic)
-    return 1
+    return min(len(exp), 5)
 
 
 # =====================================================
-# BUILD STRUCTURED RESUME (CORE ENGINE)
+# BUILD STRUCTURED RESUME (FINAL PIPELINE)
 # =====================================================
-def build_structured_resume(text):
+def build_structured_resume(text, sections):
 
-    text = clean_text(text)
+    clean_resume = clean_text(text)
 
-    sections = classify_sections(text)
-
-    skills_data = extract_skills(text)
-
-    # Convert dict → flat list for ATS + Screening
+    # ---------------------------
+    # Skills
+    # ---------------------------
+    skills_data = extract_skills(clean_resume)
     skills = skills_data["technical"] + skills_data["soft"]
 
+    # ---------------------------
+    # Education
+    # ---------------------------
+    education = extract_education(
+        sections.get("education", clean_resume)
+    )
+
+    # ---------------------------
+    # Certifications
+    # ---------------------------
+    certifications = extract_certifications(
+        sections.get("certifications", clean_resume)
+    )
+
+    # ---------------------------
+    # Experience (FIXED VERSION)
+    # ---------------------------
+    experience_text = (
+        sections.get("experience", "") +
+        sections.get("projects", "") +
+        sections.get("certifications", "")
+    )
+
+    experience = extract_experience(experience_text)
+
+    # ---------------------------
+    # Academic Profile
+    # ---------------------------
+    academic_profile = build_academic_profile(
+        education,
+        certifications
+    )
+
+    # ---------------------------
+    # Final Structured Resume
+    # ---------------------------
     structured_resume = {
         "skills": skills,
-        "education": sections.get("education", ""),
-        "experience": sections.get("experience", ""),
+        "education": education,
+        "experience": experience,
+        "academic_profile": academic_profile,
         "projects": sections.get("projects", ""),
-        "certifications": sections.get("certifications", "")
+        "certifications": academic_profile["certifications"]
     }
+
+    print("📊 Structured Resume Created")
 
     return structured_resume

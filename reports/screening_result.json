@@ -1,11 +1,9 @@
 {
     "matched_skills": [
         "machine learning",
-        "python",
-        "sql",
-        "communication"
+        "python"
     ],
-    "score": 100,
-    "percentage": 100.0,
+    "score": 60,
+    "percentage": 60.0,
     "decision": "Selected"
 }

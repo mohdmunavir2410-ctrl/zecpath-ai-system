@@ -1,40 +1,44 @@
-Mohammed Munavir
- 
-Data Scientist
- 
-BSC. MATHEMATICS
- University of Calicut 
-Technical skills
- Programming languages : Python, SQL
- Python Libraries ; NumPy, Pandas
- Machine learning
-Powerbi,Tableau
-Soft skills
-•Communication
-•Problem solving
-•Time management
-mohdmunavir2410@gmail.com
-7356506774 
-DATA SCIENCE (intern), Techolas Technologies,Calicut
-•Data cleaning and preprocessing using Python (Pandas, NumPy) & SQL
-•Built machine learning models with scikit-learn, TensorFlow, Keras
-•Applied statistical analysis, hypothesis testing, A/B testing
-•Created dashboards/visualizations in Tableau, Power BI, Matplotlib, Seaborn
-•Automated ETL workflows and data pipelines using Python
-•Performed feature engineering, model tuning, cross-validation
-•Collaborated with teams to deliver data-driven solutions
-Malappuram 
-Dynamic Data Science professional skilled in transforming raw data into actionable insights that drive smarter
-business decisions. Proficient in machine learning, predictive analytics, and statistical modeling with a strong
-foundation in Python, SQL, and visualization tools. Proven ability to solve complex problems and deliver
-measurable impact through data-driven strategies.
-PROFESSIONAL EXPERIENCE
-07/2025 – Present
-Calicut,India
-SKILLS
-PROFILE
-EDUCATION
-MEDICAL COST PREDICTION IN ML
-PROJECT
-2022-2025
-Malappuram,India
+Mohd Munavir
+Thiruvananthapuram, India | munavir@email.com | +91 XXXXX XXXXX
+LinkedIn: linkedin.com/in/munavir | GitHub: github.com/munavir
+Professional Summary
+AI & Data Science enthusiast with strong expertise in Machine Learning, NLP, and automation
+systems. Experienced in building intelligent document processing pipelines, semantic matching
+engines, and AI-driven workflow automation. Passionate about applying Artificial Intelligence to
+regulatory intelligence, compliance automation, and submission optimization.
+Education
+BSc Mathematics — University of Kerala (2023–2026)
+Core Skills
+1
+Machine Learning, Natural Language Processing (NLP), Deep Learning
+2
+Text Embeddings, Semantic Similarity Models, AI Automation Systems
+3
+Python, NumPy, Pandas, Scikit-learn, PyTorch, Sentence Transformers
+4
+Regulatory Document Analysis, Compliance Automation, Workflow Automation
+Projects
+1
+Zecpath AI — Resume Intelligence & Screening System: Built AI-powered resume analysis
+platform including parsing engine, skill intelligence, ATS scoring, academic profiling, and
+semantic job matching.
+2
+Semantic Job Matching Engine: Developed NLP model using SentenceTransformer
+embeddings to compare resumes with job descriptions and automate job-role
+recommendations.
+Internship / Training
+Data Science Intern — Techolas Technologies, Calicut
+Certifications
+1
+Machine Learning Certification
+2
+Data Science Internship Certification
+AI & Regulatory Competencies
+1
+AI Document Review Automation
+2
+NLP-based Information Extraction
+3
+Regulatory Intelligence Analysis
+4
+Compliance Monitoring Automation

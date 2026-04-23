@@ -1,20 +1,43 @@
 {
     "skills": [
         "python",
-        "sql",
         "numpy",
         "pandas",
-        "machine learning",
-        "tensorflow",
-        "keras",
-        "power bi",
-        "tableau",
-        "communication",
-        "problem solving",
-        "time management"
+        "machine learning"
     ],
-    "education": "MEDICAL COST PREDICTION IN ML\nPROJECT\n2022-2025\nMalappuram,India\n",
-    "experience": "07/2025 \u2013 Present\nCalicut,India",
-    "projects": "",
-    "certifications": ""
+    "education": [
+        {
+            "degree": "BSc Mathematics \u2014 University of Kerala (2023\u20132026)",
+            "institution": "",
+            "graduation_year": ""
+        }
+    ],
+    "experience": [
+        {
+            "role": "Data Science Internship Certification",
+            "duration": ""
+        }
+    ],
+    "academic_profile": {
+        "education": [
+            {
+                "degree": "BSc Mathematics \u2014 University of Kerala (2023\u20132026)",
+                "institution": "",
+                "graduation_year": ""
+            }
+        ],
+        "certifications": [
+            {
+                "name": "Machine Learning Certification",
+                "issuer": "Unknown"
+            }
+        ]
+    },
+    "projects": "1\nZecpath AI \u2014 Resume Intelligence & Screening System: Built AI-powered resume analysis",
+    "certifications": [
+        {
+            "name": "Machine Learning Certification",
+            "issuer": "Unknown"
+        }
+    ]
 }

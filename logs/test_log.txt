@@ -51,3 +51,14 @@ Extraction successful | ATS Score: 100/100
 Extraction successful | ATS Score: 100/100
 Extraction successful | ATS Score: 100/100
 Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 100/100
+Error: build_structured_resume() takes 1 positional argument but 2 were given
+Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 100/100
+Extraction successful | ATS Score: 60/100
+Extraction successful | ATS Score: 60
