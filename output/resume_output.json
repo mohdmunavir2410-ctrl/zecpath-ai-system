@@ -1,79 +1,29 @@
 {
-    "resume": "resume4.pdf",
-    "job": "AI in Regulatory Affairs Specialist.txt",
-    "skills": {
-        "technical": [
-            {
-                "skill": "python",
-                "confidence": {}
-            },
-            {
-                "skill": "machine learning",
-                "confidence": {}
-            },
-            {
-                "skill": "deep learning",
-                "confidence": {}
-            }
-        ],
-        "business": [],
-        "creative": [],
-        "soft_skills": []
+    "skills": [
+        "python",
+        "machine learning",
+        "deep learning"
+    ],
+    "education": [
+        {
+            "degree": "BSc Mathematics \u2014 University of Kerala (2023\u20132026)",
+            "institution": "",
+            "graduation_year": ""
+        }
+    ],
+    "experience": [
+        {
+            "role": "Data Science Internship Certification",
+            "duration": ""
+        }
+    ],
+    "entities": {},
+    "ats_breakdown": {
+        "skill": 0,
+        "experience": 100,
+        "education": 0,
+        "semantic": 64.67357873916626
     },
-    "education": {
-        "education": [
-            {
-                "degree": "BSc Mathematics — University of Kerala (2023–2026)",
-                "institution": "",
-                "graduation_year": ""
-            }
-        ],
-        "certifications": [
-            {
-                "name": "Internship / Training",
-                "issuer": "Unknown"
-            },
-            {
-                "name": "Machine Learning, Natural Language Processing (NLP), Deep Learning",
-                "issuer": "Unknown"
-            },
-            {
-                "name": "Certifications",
-                "issuer": "Unknown"
-            },
-            {
-                "name": "Machine Learning Certification",
-                "issuer": "Unknown"
-            },
-            {
-                "name": "Data Science Internship Certification",
-                "issuer": "Unknown"
-            },
-            {
-                "name": "Data Science Intern — Techolas Technologies, Calicut",
-                "issuer": "Unknown"
-            }
-        ]
-    },
-    "experience": [],
-    "entities": {
-        "email": "munavir@email.com",
-        "phone": "",
-        "skills": [
-            "machine learning",
-            "machine learning",
-            "python",
-            "machine learning"
-        ]
-    },
-    "scores": {
-        "ats": 60.0,
-        "semantic": 64.67,
-        "education": 16.0,
-        "final": 46.89
-    },
-    "decision": {
-        "status": "Rejected",
-        "reason": "Based on ATS + Semantic + Education scoring"
-    }
+    "final_score": 42.93,
+    "decision": "Rejected"
 }

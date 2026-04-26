@@ -46,3 +46,16 @@ def normalize_score(score):
         return 100
 
     return score
+
+# =====================================================
+# ATS ENGINE COMPATIBILITY FUNCTION
+# =====================================================
+
+def check_education_match(resume_data, jd_data):
+    """
+    Adapter function used by scorer.py
+    """
+
+    job_keywords = jd_data.get("education_keywords", [])
+
+    return score_education_relevance(resume_data, job_keywords)

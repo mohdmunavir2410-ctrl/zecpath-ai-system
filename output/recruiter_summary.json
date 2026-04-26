@@ -1,0 +1,23 @@
+{
+    "total_candidates": 3,
+    "shortlisted_count": 3,
+    "review_count": 0,
+    "rejected_count": 0,
+    "top_candidates": [
+        {
+            "name": "resume.pdf",
+            "score": 100.0,
+            "rank": 1
+        },
+        {
+            "name": "resume2.pdf",
+            "score": 100.0,
+            "rank": 2
+        },
+        {
+            "name": "resume3.pdf",
+            "score": 99.0,
+            "rank": 3
+        }
+    ]
+}

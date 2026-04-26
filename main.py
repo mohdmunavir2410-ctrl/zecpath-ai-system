@@ -1,242 +1,146 @@
-"""
-Zecpath AI Resume Intelligence System - CLEAN FINAL VERSION
-"""
-
 import os
 import json
 import numpy as np
 
-# -----------------------------
-# Parsers
-# -----------------------------
 from parsers.pdf_parser import extract_text_from_pdf
 from parsers.docx_parser import extract_text_from_docx
+
 from parsers.resume_parser import build_structured_resume
 from section_parser.section_classifier import classify_sections
 
-# -----------------------------
-# ATS + Screening
-# -----------------------------
-from ats_engine.scorer import score_candidate
-from screening_ai.resume_screening import screen_candidate
-
-# -----------------------------
-# Skill Engine
-# -----------------------------
 from skill_engine.skill_extractor import SkillExtractor
-from skill_engine.confidence import calculate_confidence
-
-# -----------------------------
-# Education + Experience
-# -----------------------------
-from parsers.education_parser import extract_education, extract_certifications
-from parsers.experience_parser import extract_experience
-from utils.academic_profile_builder import build_academic_profile, detect_issuer
-from ats_engine.education_relevance_engine import score_education_relevance
-
-# -----------------------------
-# Semantic Matching
-# -----------------------------
 from semantic_matcher.matcher import semantic_match
-
-# -----------------------------
-# Entity Extraction
-# -----------------------------
+from ats_engine.scorer import calculate_final_score
+from screening_ai.resume_screening import screen_candidate
 from entity_engine.entity_extractor import extract_entities
 
 
-# =================================================
-# CLEAN JSON
-# =================================================
-def clean_json(obj):
+# =====================================================
+# FILE READER
+# =====================================================
+def read_file(path):
+
+    path = os.path.normpath(path)
+
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"File not found: {path}")
+
+    if path.endswith(".pdf"):
+        return extract_text_from_pdf(path)
+
+    elif path.endswith(".docx"):
+        return extract_text_from_docx(path)
+
+    elif path.endswith(".txt"):
+        with open(path, "r", encoding="utf-8") as f:
+            return f.read()
+
+    else:
+        raise ValueError("Unsupported format")
+
+
+# =====================================================
+# CLEAN OUTPUT
+# =====================================================
+def clean(obj):
     if isinstance(obj, dict):
-        return {k: clean_json(v) for k, v in obj.items()}
-    elif isinstance(obj, list):
-        return [clean_json(i) for i in obj]
-    elif isinstance(obj, np.generic):
+        return {k: clean(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [clean(i) for i in obj]
+    if isinstance(obj, np.generic):
         return obj.item()
-    else:
-        return obj
+    return obj
 
 
-# =================================================
-# SAVE JSON
-# =================================================
-def save_json(path, data):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(clean_json(data), f, indent=4, ensure_ascii=False)
-
-
-# =================================================
-# RESUME LOADER
-# =================================================
-def extract_resume(file_path):
-    if file_path.endswith(".pdf"):
-        return extract_text_from_pdf(file_path)
-    elif file_path.endswith(".docx"):
-        return extract_text_from_docx(file_path)
-    else:
-        raise ValueError("Unsupported file format")
-
-
-# =================================================
-# SKILLS
-# =================================================
-def extract_skills(text):
-    skills_db = ["python", "machine learning", "sql", "communication", "data analysis"]
-    text = text.lower()
-    return [s for s in skills_db if s in text]
-
-
-# =================================================
-# EDUCATION PIPELINE
-# =================================================
-def process_education(resume_text, job_keywords):
-    education = extract_education(resume_text)
-    certifications = extract_certifications(resume_text)
-
-    profile = build_academic_profile(education, certifications)
-    edu_score = score_education_relevance(profile, job_keywords)
-
-    return profile, edu_score
-
-
-# =================================================
-# FINAL FORMAT
-# =================================================
-def format_final_output(
-    resume_path,
-    jd_name,
-    skills,
-    education,
-    experience,
-    entities,
-    ats_score,
-    semantic_score,
-    edu_score,
-    final_score,
-    decision
-):
-
-    return {
-        "resume": os.path.basename(resume_path),
-        "job": jd_name,
-
-        "skills": skills,
-
-        "education": education,
-
-        "experience": experience,
-
-        "entities": {
-            "email": entities.get("email", ""),
-            "phone": entities.get("phone", ""),
-            "skills": entities.get("skills", [])
-        },
-
-        "scores": {
-            "ats": float(ats_score),
-            "semantic": float(round(semantic_score, 2)),
-            "education": float(edu_score),
-            "final": float(round(final_score, 2))
-        },
-
-        "decision": {
-            "status": decision,
-            "reason": "Based on ATS + Semantic + Education scoring"
-        }
-    }
-
-
-# =================================================
-# MAIN
-# =================================================
+# =====================================================
+# MAIN PIPELINE
+# =====================================================
 def main():
 
     print("\n🚀 Zecpath AI Started")
 
-    resume_path = input("Enter resume path: ").strip()
-    jd_name = input("Enter JD file name (check folder list): ").strip()
-
-    jd_path = os.path.join("Job_Descriptions", jd_name)
+    resume_path = input("📄 Enter Resume Path: ").strip()
+    jd_path = input("📄 Enter Job Description Path: ").strip()
 
     # ---------------- RESUME ----------------
-    print("\n📄 Extracting Resume...")
-    resume_text = extract_resume(resume_path)
-
-    entities = extract_entities(resume_text)
+    print("\n📄 Reading Resume...")
+    resume_text = read_file(resume_path)
 
     sections = classify_sections(resume_text)
-    structured = build_structured_resume(resume_text, sections)
+    structured_resume = build_structured_resume(resume_text, sections)
 
     print("📊 Structured Resume Created")
 
     # ---------------- SKILLS ----------------
-    skills = SkillExtractor().extract_skills(resume_text)
+    print("\n🧠 Skills Extraction...")
+    skills_raw = SkillExtractor().extract_skills(resume_text)
 
-    # ---------------- ATS ----------------
-    found_skills = extract_skills(resume_text)
+    flat_skills = []
+    if isinstance(skills_raw, dict):
+        for v in skills_raw.values():
+            for item in v:
+                if isinstance(item, dict):
+                    flat_skills.append(item.get("skill"))
+                else:
+                    flat_skills.append(item)
+    else:
+        flat_skills = skills_raw
 
-    required_skills = {
-        "python": 30,
-        "machine learning": 30,
-        "sql": 20,
-        "communication": 20
-    }
+    flat_skills = [s for s in flat_skills if s]
 
-    ats_score, _ = score_candidate(found_skills, required_skills)
+    print("\n🧠 Skills:", flat_skills)
 
-    # ---------------- SCREENING ----------------
-    screen_candidate(structured, required_skills)
+    # ---------------- ENTITIES ----------------
+    entities = extract_entities(resume_text)
 
-    # ---------------- EDUCATION ----------------
-    job_keywords = ["python", "machine learning", "data science"]
-    education, edu_score = process_education(resume_text, job_keywords)
-
-    # ---------------- EXPERIENCE ----------------
-    experience = extract_experience(resume_text)
+    # ---------------- JD ----------------
+    print("\n📄 Reading Job Description...")
+    jd_text = read_file(jd_path)
 
     # ---------------- SEMANTIC ----------------
     print("\n🧠 Semantic Matching...")
     semantic_score = semantic_match(resume_path, jd_path)
-    semantic_score = float(semantic_score) * 100
 
-    # ---------------- FINAL SCORE ----------------
-    final_score = (ats_score + semantic_score + edu_score) / 3
+    # ---------------- ATS SCORE (FIXED CALL) ----------------
+    print("\n📊 ATS Scoring...")
 
-    if final_score >= 70:
-        decision = "Selected"
-    elif final_score >= 50:
-        decision = "Moderate"
-    else:
-        decision = "Rejected"
-
-    # ---------------- OUTPUT ----------------
-    output = format_final_output(
-        resume_path,
-        jd_name,
-        skills,
-        education,
-        experience,
-        entities,
-        ats_score,
-        semantic_score,
-        edu_score,
-        final_score,
-        decision
+    final_score, breakdown = calculate_final_score(
+        skills=flat_skills,
+        experience=structured_resume.get("experience", []),
+        education=structured_resume.get("education", []),
+        embedding_score=semantic_score,
+        jd_text=jd_text,
+        role="software_engineer"
     )
 
-    print("\n📊 FINAL RESULT GENERATED")
+    # ---------------- SCREENING ----------------
+    decision = screen_candidate(structured_resume, {
+        "required_skills": ["python", "machine learning", "sql"],
+        "min_score": 50
+    })
 
-    save_json("output/resume_output.json", output)
+    # ---------------- OUTPUT ----------------
+    output = {
+        "skills": flat_skills,
+        "education": structured_resume.get("education", []),
+        "experience": structured_resume.get("experience", []),
+        "entities": entities,
 
-    # 🔥 THIS IS YOUR REQUIRED OUTPUT
-    print(json.dumps(output, indent=4, ensure_ascii=False))
+        "ats_breakdown": breakdown,
+        "final_score": final_score,
+        "decision": decision
+    }
 
-    print("\n✅ CLEAN OUTPUT SAVED SUCCESSFULLY!")
+    print("\n⭐ FINAL SCORE:", final_score)
+    print("🎯 DECISION:", decision)
+
+    os.makedirs("output", exist_ok=True)
+
+    with open("output/resume_output.json", "w", encoding="utf-8") as f:
+        json.dump(clean(output), f, indent=4)
+
+    print("\n📁 Saved: output/resume_output.json")
 
 
-# =================================================
 if __name__ == "__main__":
     main()
